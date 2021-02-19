@@ -6,6 +6,7 @@ void map_parse();
 void csv_line_parse(csv_line &csvLine, int num);
 string csv_cell_parser(string cell, int num);
 void printMap(map<int, csv_line> Map);
+void printMap2(map<int, csv_line> Map);
 
 
 map <int, csv_line> map_csv, map_result;
@@ -36,13 +37,13 @@ int main(int argc, char* argv[])
         num_line++;
     }
     data.close();
-    printMap(map_csv);
+    printMap2(map_csv);
 
     map_parse();
-    printMap(map_result);
+    printMap2(map_result);
 
     cin.get();
-return 0;
+	return 0;
 }
 
 // вывод таблицы в консоль
@@ -54,6 +55,16 @@ void printMap(map<int, csv_line> Map) {
     {
         std::cout << setw(5) << elem.first << setw(setw_val)
             << elem.second.A << setw(setw_val) << elem.second.B << setw(setw_val) << elem.second.Cell << "\n";
+    }
+    std::cout << "\n\n";
+}
+
+void printMap2(map<int, csv_line> Map) {
+    std::cout << ",A" << "," << "B" << "," << "Cell" << "\n";
+    for (auto elem : Map)
+    {
+        std::cout << elem.first << ","
+            << elem.second.A << "," << elem.second.B << "," << elem.second.Cell << "\n";
     }
     std::cout << "\n\n";
 }
