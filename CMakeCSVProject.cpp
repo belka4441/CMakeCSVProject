@@ -1,4 +1,4 @@
-﻿#include "CMakeCSVProject.h"
+#include "CMakeCSVProject.h"
 
 using namespace std;
 void csv_read_row(std::string& line, int num);
@@ -42,17 +42,17 @@ int main(int argc, char* argv[])
     printMap(map_result);
 
     cin.get();
-    return 0;
+return 0;
 }
 
 // вывод таблицы в консоль
 void printMap(map<int, csv_line> Map) {
     int setw_val = 12;
 
-    std::cout << "\tA" << setw(setw_val) << "B" << setw(setw_val) << "Cell" << "\n";
+    std::cout << setw(setw_val) << "\tA" << setw(setw_val) << "B" << setw(setw_val) << "Cell" << "\n";
     for (auto elem : Map)
     {
-        std::cout << elem.first << "\t" 
+        std::cout << setw(5) << elem.first << setw(setw_val)
             << elem.second.A << setw(setw_val) << elem.second.B << setw(setw_val) << elem.second.Cell << "\n";
     }
     std::cout << "\n\n";
@@ -86,13 +86,17 @@ void csv_line_parse(csv_line& csvLine, int key) {
 
 // рекурсивное вычисление
 string getValFromMap(int key, char* cell) {
-    string val = map_result.at(key).getByCell(cell);
-
-    if (isDigit(val))
-        return val;
-    else {
-        return csv_cell_parser(val, key);
+    if (map_result.find(key) != map_result.end())
+    {
+        string val = map_result.at(key).getByCell(cell);
+        if (isDigit(val))
+            return val;
+        else {
+            return csv_cell_parser(val, key);
+        }
     }
+    else
+        return "N/a";
 }
 
 // вычисление значений
@@ -124,6 +128,8 @@ string csv_cell_parser(string cell, int key) {
 
                 // получить значение из вычесленной ячейуи
                 string val = getValFromMap(atoi(cell_n), cell_l);
+                if (val == "N/a")
+                    return "N/a";
                 string cll; cll.assign(cellRef, strlen(cellRef));
 
                 new_cell.replace(new_cell.find(cll), cll.size(), val);
