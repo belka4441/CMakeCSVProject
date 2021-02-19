@@ -21,7 +21,8 @@ int main(int argc, char* argv[])
     else
     {
         cout << "Не задан .csv файл!\n";
-        input = "test.csv";
+	cin.get();
+	return 0;
     }
 
     ifstream  data(input);
@@ -41,7 +42,7 @@ int main(int argc, char* argv[])
     printMap(map_result);
 
     cin.get();
-	return 0;
+    return 0;
 }
 
 // вывод таблицы в консоль
