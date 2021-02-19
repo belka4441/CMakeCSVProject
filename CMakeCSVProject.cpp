@@ -5,7 +5,7 @@ void csv_read_row(std::string& line, int num);
 void map_parse();
 void csv_line_parse(csv_line &csvLine, int num);
 string csv_cell_parser(string cell, int num);
-void printMap(map<int, csv_line> Mapб, int setw_val);
+void printMap(map<int, csv_line> Map, int setw_val);
 void printMap(map<int, csv_line> Map);
 
 
