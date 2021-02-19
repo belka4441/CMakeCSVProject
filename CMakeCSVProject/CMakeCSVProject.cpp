@@ -22,7 +22,8 @@ int main(int argc, char* argv[])
     else
     {
         cout << "Не задан .csv файл!\n";
-        input = "test.csv";
+	cin.get();
+	return 0;
     }
 
     ifstream  data(input);
