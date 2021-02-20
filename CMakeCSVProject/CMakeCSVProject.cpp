@@ -140,9 +140,12 @@ string csv_cell_parser(string cell, int key) {
                 string val = getValFromMap(atoi(cell_n), cell_l);
                 if (val == "N/a")
                     return "N/a";
-                string cll; cll.assign(cellRef, strlen(cellRef));
-
-                new_cell.replace(new_cell.find(cll), cll.size(), val);
+		    
+		if (!isDigit(val))			
+		{
+			string cll; cll.assign(cellRef, strlen(cellRef));                
+			new_cell.replace(new_cell.find(cll), cll.size(), val);
+		}
             }
             new_cell = std::regex_replace(new_cell, std::regex("\\="), "");
 
