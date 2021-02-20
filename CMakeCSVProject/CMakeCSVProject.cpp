@@ -132,17 +132,17 @@ string csv_cell_parser(string cell, int key) {
                 char* cellRef = strdup(cell_num);
                 char* cell_l, * cell_n;
 
-                // вычеслить номер и букву указанной ячейки
-                getLetterAndNum(cell_num, cell_l, cell_n);
-                //int num = atoi(numchar);
-
-                // получить значение из вычесленной ячейуи
-                string val = getValFromMap(atoi(cell_n), cell_l);
-                if (val == "N/a")
-                    return "N/a";
-		    
-		if (!isDigit(val))			
+		if (!isDigit(cell_num))			
 		{
+			// вычеслить номер и букву указанной ячейки
+			getLetterAndNum(cell_num, cell_l, cell_n);
+			//int num = atoi(numchar);
+
+			// получить значение из вычесленной ячейуи
+			string val = getValFromMap(atoi(cell_n), cell_l);
+			if (val == "N/a")
+			    return "N/a";
+		
 			string cll; cll.assign(cellRef, strlen(cellRef));                
 			new_cell.replace(new_cell.find(cll), cll.size(), val);
 		}
